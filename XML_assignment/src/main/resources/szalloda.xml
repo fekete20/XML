@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Szalloda xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="szalloda.xsd">
+    <szalloda szalloda_adoszam="12345678-2-25" ref_szoba="100" ref_vendeg="123456AB">
+        <nev>Teszt 1</nev>
+        <cim>
+            <irsz>1016</irsz>
+            <telepules>Budapest</telepules>
+            <utca>Minta utca</utca>
+            <hsz>5</hsz>
+        </cim>
+        <telefonszam>302345678</telefonszam>
+        
+     </szalloda>
+    
+    <szalloda szalloda_adoszam="87654321-2-25" ref_szoba="101" ref_vendeg="123456AB">
+        <nev>Teszt 2</nev>
+        <cim>
+            <irsz>3519</irsz>
+            <telepules>Miskolc</telepules>
+            <utca>Teszt utca</utca>
+            <hsz>69</hsz>
+        </cim>
+        <telefonszam>202345678</telefonszam>
+    </szalloda>
+    
+    <szalloda szalloda_adoszam="54654754-2-25" ref_szoba="102" ref_vendeg="245246AB"> 
+        <nev>Teszt 3</nev>
+        <cim>
+            <irsz>4400</irsz>
+            <telepules>Nyíregyháza</telepules>
+            <utca>Dísz tér</utca>
+            <hsz>48</hsz>
+        </cim>
+        <telefonszam>702345678</telefonszam>
+    </szalloda>
+    
+    <szoba szoba_ajtoszam="101" ref_szalloda="12345678-2-25">
+        <meret>42</meret>
+        <ar>31500</ar>
+    </szoba>
+    
+    <szoba szoba_ajtoszam="100" ref_szalloda="12345678-2-25"> 
+        <meret>18</meret>
+        <ar>15000</ar>
+    </szoba>
+    
+    <szoba szoba_ajtoszam="102" ref_szalloda="12345678-2-25">
+        <meret>18</meret>
+        <ar>15000</ar>
+    </szoba>
+ 
+ 
+    <vendeg vendeg_szigsz="245246AB" ref_szalloda="54654754-2-25"> 
+        <nev>
+            <vezeteknev>Nagy</vezeteknev>
+            <keresztnev>Tibor</keresztnev>
+        </nev>
+        <cim>
+            <irsz>3519</irsz>
+            <telepules>Miskolc</telepules>
+            <utca>Vadgalamb utca</utca>
+            <hsz>21</hsz>
+        </cim>
+        <telefonszam>309856543</telefonszam>
+    </vendeg>
+    
+    <vendeg vendeg_szigsz="123456AB" ref_szalloda="12345678-2-25">
+        <nev>
+            <vezeteknev>Kiss</vezeteknev>
+            <keresztnev>Pista</keresztnev>
+        </nev>
+        <cim>
+            <irsz>3515</irsz>
+            <telepules>Miskolc</telepules>
+            <utca>Egyetem</utca>
+            <hsz>1</hsz>
+        </cim>
+        <telefonszam>309876543</telefonszam>
+    </vendeg>
+    
+    <vendeg vendeg_szigsz="654321AB" ref_szalloda="12345678-2-25">
+        <nev>
+            <vezeteknev>Tóth</vezeteknev>
+            <keresztnev>Aladár</keresztnev>
+        </nev>
+        <cim>
+            <irsz>8000</irsz>
+            <telepules>Székesfehérvár</telepules>
+            <utca>Erdő utca</utca>
+            <hsz>140</hsz>
+        </cim>
+        <telefonszam>209876543</telefonszam>
+    </vendeg>  
+  
+</Szalloda>
