@@ -35,7 +35,26 @@ public class SzallodaTeljes {
 		List<Szoba> szobak = new ArrayList<Szoba>();
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node node = nodeList.item(i);
+			szobak.add(Szoba.create(node));
 		}
+		nodeList = root.getElementsByTagName(VENDEG_TAG); 
+		List<Vendeg> vendegek = new ArrayList<Vendeg>();
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node node = nodeList.item(i);
+			vendegek.add(Vendeg.create(node));
+		}
+		nodeList = root.getElementsByTagName(SZALLODA_TAG); 
+		List<Szalloda> szallodak = new ArrayList<Szalloda>();
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node node = nodeList.item(i);
+			szallodak.add(Szalloda.create(node));
+		}
+		
+		SzallodaTeljes szt = new SzallodaTeljes(document, szallodak, szobak, vendegek);
+		
+		
+		
+		return szt;
 	}
 	
 
