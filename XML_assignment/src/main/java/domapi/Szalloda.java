@@ -1,76 +1,87 @@
 package domapi;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class Szalloda {
-	private String nev;
-	private String cim;
-	private String telefonszam;
-	private String adoszam;
-	private Szoba szoba;
-	private Vendeg vendeg;
-	
-	public static Szalloda create(Node node) {
-		Szalloda szalloda = new Szalloda();
-		
-		Element element = (Element) node;
-		szalloda.nev = element.getAttribute("nev");
-		szalloda.cim = element.getAttribute("cim");
-		szalloda.telefonszam = element.getAttribute("telefonszam");
-		szalloda.adoszam = element.getAttribute("telefonszam");
-	
+	private static final String SZALLODA_TAG = "szalloda";
+	private static final String SZOBA_TAG = "szoba";
+	private static final String VENDEG_TAG = "vendeg";
+
+	private Document root;
+	private List<Szoba> szobak;
+	private List<Vendeg> vendegek;
+
+	public Szalloda(Document root, List<Szoba> szobak, List<Vendeg> vendegek) {
+		this.root = root;
+		this.szobak = szobak;
+		this.vendegek = vendegek;
+	}
+
+	public static Szalloda create(Document document) {
+		Element root = document.getDocumentElement();
+		if (!root.getNodeName().equals(SZALLODA_TAG)) {
+			throw new IllegalArgumentException("Nem szálloda a gyökérelem!");
+		}
+		NodeList nodeList = root.getElementsByTagName(SZOBA_TAG);
+		List<Szoba> szobak = new ArrayList<Szoba>();
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node node = nodeList.item(i);
+			szobak.add(Szoba.create(node));
+		}
+		nodeList = root.getElementsByTagName(VENDEG_TAG);
+		List<Vendeg> vendegek = new ArrayList<Vendeg>();
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node node = nodeList.item(i);
+			vendegek.add(Vendeg.create(node));
+		}
+		Szalloda szalloda = new Szalloda(document, szobak, vendegek);
+
+		szobak.forEach(szoba -> szoba.setVendeg(szalloda.getVendegById(szoba.getVendegId())));
 		return szalloda;
 	}
 
-	public String getNev() {
-		return nev;
+	public Szoba getSzobaById(String id) {
+		return szobak.stream().filter(szoba -> szoba.getId().equals(id)).findFirst().orElseGet(Szoba::new);
 	}
 
-	public void setNev(String nev) {
-		this.nev = nev;
+	public Vendeg getVendegById(String id) {
+		return vendegek.stream().filter(vendeg -> vendeg.getId().equals(id)).findFirst().orElseGet(Vendeg::new);
 	}
 
-	public String getCim() {
-		return cim;
-	}
+	public void addSzalloda(Szoba szoba, Vendeg vendeg) {
+		Element element = root.createElement(SZOBA_TAG);
+		element.setAttribute("szoba_ajtoszam", szoba.getId());
 
-	public void setCim(String cim) {
-		this.cim = cim;
-	}
+		Element eVendeg = root.createElement(VENDEG_TAG);
+		eVendeg.setAttribute("vendeg_szigszam", vendeg.getId());
+		eVendeg.setAttribute("nev", vendeg.getName());
 
-	public String getTelefonszam() {
-		return telefonszam;
-	}
+		root.getDocumentElement().appendChild(element);
+		element.appendChild(eVendeg);
 
-	public void setTelefonszam(String telefonszam) {
-		this.telefonszam = telefonszam;
-	}
+		szobak.add(szoba);
+		vendegek.add(vendeg);
 
-	public String getAdoszam() {
-		return adoszam;
 	}
-
-	public void setAdoszam(String adoszam) {
-		this.adoszam = adoszam;
+	public void persist(String pathname) throws TransformerException {
+		TransformerFactory factory = TransformerFactory.newInstance();
+		Transformer transformer = factory.newTransformer();
+		DOMSource source = new DOMSource(root);
+		StreamResult result = new StreamResult(new File(pathname));
+		transformer.transform(source, result);
 	}
-
-	public Szoba getSzoba() {
-		return szoba;
-	}
-
-	public void setSzoba(Szoba szoba) {
-		this.szoba = szoba;
-	}
-
-	public Vendeg getVendeg() {
-		return vendeg;
-	}
-
-	public void setVendeg(Vendeg vendeg) {
-		this.vendeg = vendeg;
-	}
-	
-	
 
 }

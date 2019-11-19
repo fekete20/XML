@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><szalloda xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="szalloda.xsd">
+   
+ <szoba ar="20000" meret="42" szoba_ajtoszam="123">
+     <vendeg nev="Juhász Imre" vendeg_szigszam="456744IO"/>
+     <vendeg nev="Lakatos Jolán" vendeg_szigszam="456789UZ"/>
+ </szoba>
+    
+    <szoba ar="23000" meret="55" szoba_ajtoszam="234">
+        <vendeg nev="Kis Zsolt" vendeg_szigszam="567321ZT"/>
+    </szoba>
+    
+<szoba szoba_ajtoszam="143"><vendeg nev="Kiss Anna" vendeg_szigszam="342344HJ"/></szoba></szalloda>

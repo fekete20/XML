@@ -4,54 +4,75 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class Szoba {
-		private String meret;
-		private String ar;
-		private String ajtoszam;
-		private Szalloda szalloda;
+		private String id;
+		private String size;
+		private String price;
+		private String vendegId;
+		private String vendegNev;
+		private Vendeg vendeg;
 		
 		public static Szoba create(Node node) {
 			Szoba szoba = new Szoba();
 			
 			Element element = (Element) node;
-			szoba.meret = element.getAttribute("meret");
-			szoba.ar = element.getAttribute("ar");
-			szoba.ajtoszam = element.getAttribute("ajtoszam");
-			
+			szoba.id = element.getAttribute("szoba_ajtoszam");
+			szoba.size = element.getAttribute("meret");
+			szoba.price = element.getAttribute("ar");
+			szoba.vendegId = element.getAttribute("vendeg_szigszam");
+			szoba.vendegNev = element.getAttribute("nev");
 		
 			return szoba;
 		}
 
-		public String getMeret() {
-			return meret;
+		public String getId() {
+			return id;
 		}
 
-		public void setMeret(String meret) {
-			this.meret = meret;
+		public void setId(String id) {
+			this.id = id;
 		}
 
-		public String getAr() {
-			return ar;
+		public String getSize() {
+			return size;
 		}
 
-		public void setAr(String ar) {
-			this.ar = ar;
+		public void setSize(String size) {
+			this.size = size;
 		}
 
-		public String getAjtoszam() {
-			return ajtoszam;
+		public String getPrice() {
+			return price;
 		}
 
-		public void setAjtoszam(String ajtoszam) {
-			this.ajtoszam = ajtoszam;
+		public void setPrice(String price) {
+			this.price = price;
 		}
 
-		public Szalloda getSzalloda() {
-			return szalloda;
+		public String getVendegId() {
+			return vendegId;
 		}
 
-		public void setSzalloda(Szalloda szalloda) {
-			this.szalloda = szalloda;
+		public void setVendegId(String vendegId) {
+			this.vendegId = vendegId;
 		}
+
+		public String getVendegNev() {
+			return vendegNev;
+		}
+
+		public void setVendegNev(String vendegNev) {
+			this.vendegNev = vendegNev;
+		}
+
+		public Vendeg getVendeg() {
+			return vendeg;
+		}
+
+		public void setVendeg(Vendeg vendeg) {
+			this.vendeg = vendeg;
+		}
+
+		
 		
 		
 }
