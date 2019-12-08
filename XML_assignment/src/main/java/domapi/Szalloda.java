@@ -33,7 +33,7 @@ public class Szalloda {
 	public static Szalloda create(Document document) {
 		Element root = document.getDocumentElement();
 		if (!root.getNodeName().equals(SZALLODA_TAG)) {
-			throw new IllegalArgumentException("Nem szálloda a gyökérelem!");
+			throw new IllegalArgumentException("A gyökérelem nem szálloda típusú.");
 		}
 		NodeList nodeList = root.getElementsByTagName(SZOBA_TAG);
 		List<Szoba> szobak = new ArrayList<Szoba>();
@@ -60,7 +60,7 @@ public class Szalloda {
 	public Vendeg getVendegById(String id) {
 		return vendegek.stream().filter(vendeg -> vendeg.getId().equals(id)).findFirst().orElseGet(Vendeg::new);
 	}
-
+	
 	public void addSzalloda(Szoba szoba, Vendeg vendeg) {
 		Element element = root.createElement(SZOBA_TAG);
 		element.setAttribute("szoba_ajtoszam", szoba.getId());
@@ -76,6 +76,7 @@ public class Szalloda {
 		vendegek.add(vendeg);
 
 	}
+
 	public void persist(String pathname) throws TransformerException {
 		TransformerFactory factory = TransformerFactory.newInstance();
 		Transformer transformer = factory.newTransformer();

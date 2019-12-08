@@ -4,75 +4,72 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class Szoba {
-		private String id;
-		private String size;
-		private String price;
-		private String vendegId;
-		private String vendegNev;
-		private Vendeg vendeg;
-		
-		public static Szoba create(Node node) {
-			Szoba szoba = new Szoba();
-			
-			Element element = (Element) node;
-			szoba.id = element.getAttribute("szoba_ajtoszam");
-			szoba.size = element.getAttribute("meret");
-			szoba.price = element.getAttribute("ar");
-			szoba.vendegId = element.getAttribute("vendeg_szigszam");
-			szoba.vendegNev = element.getAttribute("nev");
-		
-			return szoba;
-		}
+	private String id;
+	private String size;
+	private String price;
+	private String vendegId;
+	private String vendegNev;
+	private Vendeg vendeg;
 
-		public String getId() {
-			return id;
-		}
+	public static Szoba create(Node node) {
+		Szoba szoba = new Szoba();
 
-		public void setId(String id) {
-			this.id = id;
-		}
+		Element element = (Element) node;
+		szoba.id = element.getAttribute("szoba_ajtoszam");
+		szoba.size = element.getAttribute("meret");
+		szoba.price = element.getAttribute("ar");
+		szoba.vendegId = element.getAttribute("vendeg_szigszam");
+		szoba.vendegNev = element.getAttribute("nev");
 
-		public String getSize() {
-			return size;
-		}
+		return szoba;
+	}
 
-		public void setSize(String size) {
-			this.size = size;
-		}
+	public String getId() {
+		return id;
+	}
 
-		public String getPrice() {
-			return price;
-		}
+	public void setId(String id) {
+		this.id = id;
+	}
 
-		public void setPrice(String price) {
-			this.price = price;
-		}
+	public String getSize() {
+		return size;
+	}
 
-		public String getVendegId() {
-			return vendegId;
-		}
+	public void setSize(String size) {
+		this.size = size;
+	}
 
-		public void setVendegId(String vendegId) {
-			this.vendegId = vendegId;
-		}
+	public String getPrice() {
+		return price;
+	}
 
-		public String getVendegNev() {
-			return vendegNev;
-		}
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
-		public void setVendegNev(String vendegNev) {
-			this.vendegNev = vendegNev;
-		}
+	public String getVendegId() {
+		return vendegId;
+	}
 
-		public Vendeg getVendeg() {
-			return vendeg;
-		}
+	public void setVendegId(String vendegId) {
+		this.vendegId = vendegId;
+	}
 
-		public void setVendeg(Vendeg vendeg) {
-			this.vendeg = vendeg;
-		}
+	public String getVendegNev() {
+		return vendegNev;
+	}
 
-		
-		
-		
+	public void setVendegNev(String vendegNev) {
+		this.vendegNev = vendegNev;
+	}
+
+	public Vendeg getVendeg() {
+		return vendeg;
+	}
+
+	public void setVendeg(Vendeg vendeg) {
+		this.vendeg = vendeg;
+	}
+
 }
